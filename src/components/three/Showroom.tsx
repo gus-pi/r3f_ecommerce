@@ -1,14 +1,11 @@
-import { useLoader } from '@react-three/fiber';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/Addons.js';
+import { useGLTF } from '@react-three/drei';
 
 const Showroom = () => {
-    const gltf = useLoader(GLTFLoader, './models/Shoe.glb');
+    const gltf = useGLTF('/models/custom.glb');
     return (
         <>
-            <group scale={100}>
-                <primitive object={gltf.scene} />
-            </group>
+            <primitive object={gltf.scene} />
+
             {/* <mesh
                 rotation={[
                     THREE.MathUtils.degToRad(45),
