@@ -2,7 +2,7 @@ import Home from './components/Home';
 
 const App = () => {
     return (
-        <div>
+        <div style={{ height: '100%' }}>
             <Home />
         </div>
     );
