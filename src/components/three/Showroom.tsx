@@ -1,10 +1,13 @@
-import { useGLTF } from '@react-three/drei';
+import { CameraControls, useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
+import { useRef } from 'react';
 import * as THREE from 'three';
 
 const Showroom = () => {
     const gltf = useGLTF('/models/custom.glb');
     const { raycaster } = useThree();
+
+    const cameraControlsRef = useRef<CameraControls>(null!);
 
     const shoesClick = () => {
         const intersects = raycaster.intersectObjects(gltf.scene.children, true);
@@ -18,22 +21,24 @@ const Showroom = () => {
             const mat = firstObj.material as THREE.MeshStandardMaterial;
 
             mat.color = new THREE.Color('red');
+
+            cameraControlsRef.current.fitToBox(
+                firstObj,
+                true,
+                //     {
+                //     paddingLeft: 0,
+                //     paddingRight: 0,
+                //     paddingBottom: 1,
+                //     paddingTop: 2,
+                // }
+            );
         }
     };
     return (
         <>
+            <directionalLight position={[3, 3, 3]} />
+            <CameraControls minDistance={0.5} maxDistance={10} ref={cameraControlsRef} />
             <primitive object={gltf.scene} onClick={shoesClick} />
-
-            {/* <mesh
-                rotation={[
-                    THREE.MathUtils.degToRad(45),
-                    THREE.MathUtils.degToRad(45),
-                    THREE.MathUtils.degToRad(45),
-                ]}
-            >
-                <boxGeometry />
-                <meshStandardMaterial />
-            </mesh> */}
         </>
     );
 };
