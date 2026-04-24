@@ -1,11 +1,27 @@
 import { CameraControls, useGLTF } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const Showroom = () => {
     const gltf = useGLTF('/models/custom.glb');
     const { raycaster } = useThree();
+
+    // window.addEventListener('keydown', (e) => {
+    //     console.log(e);
+    // });
+
+    useEffect(() => {
+        cameraControlsRef.current.setTarget(0, 0, 0, false);
+    });
+
+    let angle = 0;
+    let dis = 2;
+
+    useFrame(() => {
+        cameraControlsRef.current.setPosition(dis * Math.sin(angle), 0.8, dis * Math.cos(angle));
+        angle += 0.01;
+    });
 
     const cameraControlsRef = useRef<CameraControls>(null!);
 
