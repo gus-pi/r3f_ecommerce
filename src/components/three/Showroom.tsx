@@ -7,10 +7,11 @@ const Showroom = () => {
 
     return (
         <>
-            <directionalLight position={[3, 3, 3]} castShadow />
+            <directionalLight position={[3, 3, 3]} />
             <CameraControls minDistance={1} maxDistance={8} ref={cameraControlsRef} />
             <Shoes cameraControlsRef={cameraControlsRef} />
-            <ContactShadows />
+
+            <ContactShadows scale={5} color="#000000" resolution={512} opacity={0.8} blur={0.5} />
         </>
     );
 };

@@ -77,8 +77,12 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
 
     useEffect(() => {
         const controls = cameraControlsRef.current;
-        const onControl = () => { isFittingRef.current = true; };
-        const onSleep = () => { isFittingRef.current = false; };
+        const onControl = () => {
+            isFittingRef.current = true;
+        };
+        const onSleep = () => {
+            isFittingRef.current = false;
+        };
         controls.addEventListener('control', onControl);
         controls.addEventListener('sleep', onSleep);
         return () => {
@@ -88,9 +92,17 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
     }, [cameraControlsRef]);
 
     useFrame((_, delta) => {
-        if (!isFittingRef.current) {
-            groupRef.current.rotation.y += delta * 0.5;
-        }
+        rightRef.current.rotation.y = THREE.MathUtils.degToRad(-60);
+        leftRef.current.rotation.x = THREE.MathUtils.degToRad(25);
+        leftRef.current.rotation.y = THREE.MathUtils.degToRad(0);
+        leftRef.current.rotation.z = THREE.MathUtils.degToRad(10);
+        leftRef.current.position.x = 0;
+        leftRef.current.position.z = 0.15;
+        leftRef.current.position.y = 0.25;
+
+        // if (!isFittingRef.current) {
+        //     groupRef.current.rotation.y += delta * 0.5;
+        // }
     });
 
     const shoesClick = () => {
