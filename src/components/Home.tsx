@@ -1,13 +1,18 @@
 import { Canvas } from '@react-three/fiber';
 import Showroom from './three/Showroom';
+import NavBar from './NavBar';
 
 const Home = () => {
     return (
-        <Canvas style={{ width: '100vw', height: '100vh' }}>
-            <axesHelper args={[5]} />
-            {/* <gridHelper />  */}
-            <Showroom />
-        </Canvas>
+        <>
+            <NavBar />
+            <Canvas style={{ width: '100vw', height: '100vh', background: '#b7f2f1' }}>
+                {/* <axesHelper args={[5]} /> */}
+                {/* <gridHelper />  */}
+                {/* <color attach={'background'} args={[#b7f2f1]} /> */}
+                <Showroom />
+            </Canvas>
+        </>
     );
 };
 export default Home;
