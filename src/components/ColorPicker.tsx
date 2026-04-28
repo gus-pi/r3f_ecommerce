@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 
 const ColorPicker = () => {
     const [selectedColorIndex, setSelectedColorIndex] = useAtom(selectedColorState);
-    const [selectedMeshName, setSelectedMeshName] = useAtom(selectedMeshState);
+    const [selectedMeshName] = useAtom(selectedMeshState);
     const padding = 16;
     const btnWidth = 30;
     const width = Constants.COLOR_ARR.length * (btnWidth + padding * 2);
@@ -21,7 +21,7 @@ const ColorPicker = () => {
         <Box className={'color-wrap'}>
             <Box className={'color-inner-wrap'} style={{ width: width }}>
                 <Typography className="current-part">
-                    {selectedMeshName}
+                    {selectedMeshName !== '' ? selectedMeshName : 'Select a part to color it'}
                     {/* {Constants.COLOR_ARR[selectedColorIndex].name} */}
                 </Typography>
                 <List className={'list-wrap'}>

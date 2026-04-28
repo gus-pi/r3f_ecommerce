@@ -126,6 +126,11 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
             const mat = firstObj.material as THREE.MeshStandardMaterial;
             const color = Constants.COLOR_ARR[selectedColorIndex].color;
             mat.color = new THREE.Color(color);
+
+            mat.emissive = new THREE.Color('#8a3200');
+            setTimeout(() => {
+                mat.emissive = new THREE.Color('black');
+            }, 200);
             cameraControlsRef.current.fitToBox(firstObj, true);
         }
     };
