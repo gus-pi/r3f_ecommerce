@@ -10,6 +10,9 @@ import type { CameraControls } from '@react-three/drei';
 import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { useEffect, useRef, type JSX, type RefObject } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
+import { selectedColorState } from '../../atoms/Atoms';
+import Constants from '../../constants';
+import { useAtom } from 'jotai';
 
 type GLTFAction = THREE.AnimationClip;
 
@@ -70,10 +73,14 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
     const { nodes, materials } = useGLTF('/models/custom.glb') as unknown as GLTFResult;
     const { raycaster } = useThree();
 
+    const [selectedColorIndex, setSelectedColorIndex] = useAtom(selectedColorState);
+
     const groupRef = useRef<THREE.Group>(null!);
     const rightRef = useRef<THREE.Group>(null!);
     const leftRef = useRef<THREE.Group>(null!);
     const isFittingRef = useRef(false);
+
+    const color = Constants.COLOR_ARR[selectedColorIndex].color;
 
     useEffect(() => {
         const controls = cameraControlsRef.current;
@@ -111,7 +118,7 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
             const firstObj = intersects[0].object as THREE.Mesh;
             const cloneMat = (firstObj.material as THREE.MeshStandardMaterial).clone();
             firstObj.material = cloneMat;
-            (firstObj.material as THREE.MeshStandardMaterial).color = new THREE.Color('red');
+            (firstObj.material as THREE.MeshStandardMaterial).color = new THREE.Color(color);
             cameraControlsRef.current.fitToBox(firstObj, true);
         }
     };
