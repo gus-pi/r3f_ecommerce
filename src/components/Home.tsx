@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import Showroom from './three/Showroom';
 import NavBar from './NavBar';
+import ColorPicker from './ColorPicker';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
                 {/* <color attach={'background'} args={[#b7f2f1]} /> */}
                 <Showroom />
             </Canvas>
+            <ColorPicker />
         </>
     );
 };
