@@ -4,6 +4,21 @@ import '../shoes.scss';
 import { selectedColorState, selectedMeshState } from '../atoms/Atoms';
 import { useAtom } from 'jotai';
 
+const MESH_NAME_OVERRIDES: Record<string, string> = {
+    'outsole-bottom-l': 'Outsole Bottom',
+    Plane045: 'Lace',
+    Plane046: 'Lace',
+};
+
+function formatMeshName(name: string): string {
+    if (name in MESH_NAME_OVERRIDES) return MESH_NAME_OVERRIDES[name];
+    return name
+        .replace(/_Left_$/, '')
+        .replace(/_Left$/, '')
+        .replace(/__/g, ' ')
+        .replace(/_/g, ' ');
+}
+
 const ColorPicker = () => {
     const [selectedColorIndex, setSelectedColorIndex] = useAtom(selectedColorState);
     const [selectedMeshName] = useAtom(selectedMeshState);
@@ -21,7 +36,7 @@ const ColorPicker = () => {
         <Box className={'color-wrap'}>
             <Box className={'color-inner-wrap'} style={{ width: width }}>
                 <Typography className="current-part">
-                    {selectedMeshName !== '' ? selectedMeshName : 'Select a part to color it'}
+                    {selectedMeshName !== '' ? formatMeshName(selectedMeshName) : 'Select a part to color it'}
                     {/* {Constants.COLOR_ARR[selectedColorIndex].name} */}
                 </Typography>
                 <List className={'list-wrap'}>
