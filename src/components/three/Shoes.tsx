@@ -71,7 +71,7 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
     const [selectedMeshName, setSelectedMeshName] = useAtom(selectedMeshState);
 
     const groupRef = useRef<THREE.Group>(null!);
-    const rightRef = useRef<THREE.Group>(null!);
+    // const rightRef = useRef<THREE.Group>(null!);
     const leftRef = useRef<THREE.Group>(null!);
     const isFittingRef = useRef(false);
 
@@ -101,13 +101,13 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
     }, [selectedColorIndex]);
 
     useFrame((_, delta) => {
-        rightRef.current.rotation.y = THREE.MathUtils.degToRad(-60);
-        leftRef.current.rotation.x = THREE.MathUtils.degToRad(25);
+        // rightRef.current.rotation.y = THREE.MathUtils.degToRad(-60);
+        leftRef.current.rotation.x = THREE.MathUtils.degToRad(15);
         leftRef.current.rotation.y = THREE.MathUtils.degToRad(0);
-        leftRef.current.rotation.z = THREE.MathUtils.degToRad(10);
+        leftRef.current.rotation.z = THREE.MathUtils.degToRad(20);
         leftRef.current.position.x = 0;
         leftRef.current.position.z = 0.15;
-        leftRef.current.position.y = 0.25;
+        leftRef.current.position.y = 0.2;
 
         // if (!isFittingRef.current) {
         //     groupRef.current.rotation.y += delta * 0.5;
@@ -138,160 +138,6 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
     return (
         <group {...props} ref={groupRef} dispose={null} onClick={shoesClick}>
             <group name="Scene">
-                <group name="Right" ref={rightRef}>
-                    <mesh
-                        name="Insole_Right"
-                        geometry={nodes['Insole_Right'].geometry}
-                        material={materials['govde.002']}
-                        position={[-0.104, 0.026, -0.164]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Lining_Right"
-                        geometry={nodes['Lining_Right'].geometry}
-                        material={materials['govde.002']}
-                        position={[0.007, 0.189, -0.245]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Outsole_Back_Right"
-                        geometry={nodes['Outsole_Back_Right'].geometry}
-                        material={materials['bacık.002']}
-                        position={[-0.068, 0.029, -0.162]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Outsole_Bottom_Right"
-                        geometry={nodes['Outsole_Bottom_Right'].geometry}
-                        material={materials['bacık.002']}
-                        position={[-0.104, 0.013, -0.164]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Outsole_Front_Right"
-                        geometry={nodes['Outsole_Front_Right'].geometry}
-                        material={materials['bacık.002']}
-                        position={[-0.459, 0.03, 0.173]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Outsole_Side_Right"
-                        geometry={nodes['Outsole_Side_Right'].geometry}
-                        material={materials['bacık.002']}
-                        position={[-0.069, 0.011, -0.206]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Seam_Line_Right"
-                        geometry={nodes['Seam_Line_Right'].geometry}
-                        material={materials['bacık.002']}
-                        position={[-0.138, 0.087, -0.145]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Foxing__Lining_Back_Right"
-                        geometry={nodes.Foxing__Lining_Back_Right.geometry}
-                        material={materials['govde.002']}
-                        position={[0.109, 0.214, -0.336]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Lace__Dubrae_Right"
-                        geometry={nodes.Lace__Dubrae_Right.geometry}
-                        material={materials['bacik.002']}
-                        position={[-0.309, 0.288, -0.008]}
-                        rotation={[Math.PI / 2, 0, 0.836]}
-                        scale={0.025}
-                    />
-                    <mesh
-                        name="Back_Label_Right"
-                        geometry={nodes.Back_Label_Right.geometry}
-                        material={materials['govde.002']}
-                        position={[0.243, 0.342, -0.434]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Foxing__Lining_Right"
-                        geometry={nodes.Foxing__Lining_Right.geometry}
-                        material={materials['govde.002']}
-                        position={[0.007, 0.198, -0.245]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Midsole_Right"
-                        geometry={nodes.Midsole_Right.geometry}
-                        material={materials['bacık.002']}
-                        position={[-0.138, 0.084, -0.145]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Plane006"
-                        geometry={nodes.Plane006.geometry}
-                        material={materials['bacik.002']}
-                        position={[-0.235, 0.302, -0.206]}
-                        rotation={[-2.483, -0.86, -2.622]}
-                        scale={[0.262, 0.257, 0.277]}
-                    />
-                    <mesh
-                        name="Plane007"
-                        geometry={nodes.Plane007.geometry}
-                        material={materials['bacik.002']}
-                        position={[-0.102, 0.302, -0.058]}
-                        rotation={[-0.411, 0.292, 0.122]}
-                        scale={[-0.276, 0.259, 0.304]}
-                    />
-                    <mesh
-                        name="Tip_Left_Right_"
-                        geometry={nodes.Tip_Left_Right_.geometry}
-                        material={materials['govde.002']}
-                        position={[-0.135, 0.185, 0.027]}
-                        rotation={[0, 0.858, 0]}
-                        scale={[-0.256, 0.254, 0.259]}
-                    />
-                    <mesh
-                        name="Tip_Right"
-                        geometry={nodes.Tip_Right.geometry}
-                        material={materials['govde.002']}
-                        position={[-0.357, 0.16, 0.037]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Tip_Right_Right_"
-                        geometry={nodes.Tip_Right_Right_.geometry}
-                        material={materials['govde.002']}
-                        position={[-0.329, 0.185, -0.188]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Vamp_Right"
-                        geometry={nodes.Vamp_Right.geometry}
-                        material={materials['govde.002']}
-                        position={[-0.187, -0.015, -0.178]}
-                        rotation={[-Math.PI, -0.735, -Math.PI]}
-                        scale={0.254}
-                    />
-                    <mesh
-                        name="Tongue_Right"
-                        geometry={nodes.Tongue_Right.geometry}
-                        material={materials['bacik.002']}
-                        position={[-0.129, 0.315, -0.171]}
-                        rotation={[-Math.PI, -0.57, -Math.PI]}
-                        scale={[0.257, 0.254, 0.262]}
-                    />
-                </group>
                 <group name="Left" ref={leftRef}>
                     <mesh
                         name="Insole_Left"
