@@ -1,11 +1,12 @@
 import { Box, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
 import Constants from '../constants';
 import '../shoes.scss';
-import { selectedColorState } from '../atoms/Atoms';
+import { selectedColorState, selectedMeshState } from '../atoms/Atoms';
 import { useAtom } from 'jotai';
 
 const ColorPicker = () => {
     const [selectedColorIndex, setSelectedColorIndex] = useAtom(selectedColorState);
+    const [selectedMeshName, setSelectedMeshName] = useAtom(selectedMeshState);
     const padding = 16;
     const btnWidth = 30;
     const width = Constants.COLOR_ARR.length * (btnWidth + padding * 2);
@@ -20,8 +21,8 @@ const ColorPicker = () => {
         <Box className={'color-wrap'}>
             <Box className={'color-inner-wrap'} style={{ width: width }}>
                 <Typography className="current-part">
-                    {/* {selectedMeshName} */}
-                    {Constants.COLOR_ARR[selectedColorIndex].name}
+                    {selectedMeshName}
+                    {/* {Constants.COLOR_ARR[selectedColorIndex].name} */}
                 </Typography>
                 <List className={'list-wrap'}>
                     {Constants.COLOR_ARR.map((color, index) => (
