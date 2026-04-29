@@ -1,12 +1,12 @@
 export default class Constants {
     public static readonly COLOR_ARR = [
         {
-            color: '#373737',
-            name: 'Black',
+            color: '#FFFFFF',
+            name: 'White',
         },
         {
-            color: '#D0D5DD',
-            name: 'White',
+            color: '#373737',
+            name: 'Black',
         },
         {
             color: '#979C98',

@@ -36,7 +36,9 @@ const ColorPicker = () => {
         <Box className={'color-wrap'}>
             <Box className={'color-inner-wrap'} style={{ width: width }}>
                 <Typography className="current-part">
-                    {selectedMeshName !== '' ? formatMeshName(selectedMeshName) : 'Select a part to color it'}
+                    {selectedMeshName !== ''
+                        ? formatMeshName(selectedMeshName)
+                        : 'Select a part to color it'}
                     {/* {Constants.COLOR_ARR[selectedColorIndex].name} */}
                 </Typography>
                 <List className={'list-wrap'}>
@@ -49,8 +51,10 @@ const ColorPicker = () => {
                                         ? 'color-btn selected'
                                         : 'color-btn'
                                 }
-                                style={{ backgroundColor: color.color }}
-                            ></IconButton>
+                                style={{
+                                    backgroundColor: color.color,
+                                }}
+                            />
                             {selectedColorIndex === index ? (
                                 <ListItemText className="color-name" primary={color.name} />
                             ) : (
