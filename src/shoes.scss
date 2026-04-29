@@ -6,9 +6,13 @@
     height: 200px;
 
     .color-inner-wrap {
-        background-color: #fff;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         padding: 10px 20px 40px 20px;
         border-radius: 15px;
+        // box-shadow: #222;
         margin: 0 auto;
 
         .current-part {
