@@ -100,7 +100,7 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
         }
     }, [selectedColorIndex]);
 
-    useFrame((_, delta) => {
+    useFrame(() => {
         // rightRef.current.rotation.y = THREE.MathUtils.degToRad(-60);
         leftRef.current.rotation.x = THREE.MathUtils.degToRad(15);
         leftRef.current.rotation.y = THREE.MathUtils.degToRad(0);

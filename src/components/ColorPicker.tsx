@@ -45,7 +45,7 @@ const ColorPicker = () => {
                     {Constants.COLOR_ARR.map((color, index) => (
                         <ListItem className="color-item" key={'color-' + index}>
                             <IconButton
-                                onClick={(e) => colorClick(color, index)}
+                                onClick={() => colorClick(color, index)}
                                 className={
                                     selectedColorIndex === index
                                         ? 'color-btn selected'
