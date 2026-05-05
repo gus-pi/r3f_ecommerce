@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import Showroom from './three/Showroom';
 import NavBar from './NavBar';
 import ColorPicker from './ColorPicker';
+import LoadingScreen from './LoadingScreen';
 
 const Home = () => {
     const angle = 0;
@@ -17,6 +18,7 @@ const Home = () => {
                     position: 'relative',
                 }}
             >
+                <LoadingScreen />
                 <Canvas
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                     camera={{ position: [dis * Math.sin(angle), 0.8, dis * Math.cos(angle)] }}

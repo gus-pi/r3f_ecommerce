@@ -4,7 +4,7 @@ import {
     Environment,
     MeshReflectorMaterial,
 } from '@react-three/drei';
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Shoes } from './Shoes';
 import * as THREE from 'three';
 
@@ -22,7 +22,9 @@ const Showroom = () => {
                 ref={cameraControlsRef}
                 maxPolarAngle={THREE.MathUtils.degToRad(80)}
             />
-            <Shoes cameraControlsRef={cameraControlsRef} />
+            <Suspense fallback={null}>
+                <Shoes cameraControlsRef={cameraControlsRef} />
+            </Suspense>
             <ContactShadows scale={5} color="#000000" resolution={512} opacity={0.8} blur={0.5} />
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0.3]}>
                 <circleGeometry args={[1.2, 64]} />
