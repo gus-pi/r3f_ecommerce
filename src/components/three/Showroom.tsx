@@ -4,12 +4,23 @@ import {
     Environment,
     MeshReflectorMaterial,
 } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { Shoes } from './Shoes';
 import * as THREE from 'three';
 
+const PLATFORM_CENTER = new THREE.Vector3(0, 0.1, 0.3);
+
 const Showroom = () => {
     const cameraControlsRef = useRef<CameraControls>(null!);
+
+    useEffect(() => {
+        cameraControlsRef.current.setTarget(
+            PLATFORM_CENTER.x,
+            PLATFORM_CENTER.y,
+            PLATFORM_CENTER.z,
+            false
+        );
+    }, []);
 
     return (
         <>

@@ -74,6 +74,7 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
     // const rightRef = useRef<THREE.Group>(null!);
     const leftRef = useRef<THREE.Group>(null!);
     const isFittingRef = useRef(false);
+    const shoeCenterRef = useRef<{ x: number; z: number } | null>(null);
 
     useEffect(() => {
         const controls = cameraControlsRef.current;
@@ -105,9 +106,20 @@ export function Shoes({ cameraControlsRef, ...props }: ShoesProps) {
         leftRef.current.rotation.x = THREE.MathUtils.degToRad(15);
         leftRef.current.rotation.y = THREE.MathUtils.degToRad(0);
         leftRef.current.rotation.z = THREE.MathUtils.degToRad(20);
-        leftRef.current.position.x = 0;
-        leftRef.current.position.z = 0.15;
-        leftRef.current.position.y = 0.2;
+
+        const pos = shoeCenterRef.current ?? { x: 0, z: 0.3 };
+        leftRef.current.position.set(pos.x, 0.2, pos.z);
+
+        if (!shoeCenterRef.current) {
+            const box = new THREE.Box3().setFromObject(leftRef.current);
+            const center = box.getCenter(new THREE.Vector3());
+            // Shift position so the shoe's visual center lands at (0, _, 0.3)
+            shoeCenterRef.current = {
+                x: 0 + (0 - center.x),
+                z: 0.3 + (0.3 - center.z),
+            };
+            leftRef.current.position.set(shoeCenterRef.current.x, 0.2, shoeCenterRef.current.z);
+        }
 
         // if (!isFittingRef.current) {
         //     groupRef.current.rotation.y += delta * 0.5;
